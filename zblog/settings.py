@@ -1,3 +1,4 @@
+# coding:utf-8
 """
 Django settings for zblog project.
 
@@ -25,14 +26,14 @@ SECRET_KEY = '2#13k2+%h(pe*slhoggz9-9h+r*1x&$1jt_zyw67gxh+c7mt6@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost','47.94.81.148','www.ai123.ai','ai123.ai','vai123.ai','www.vai123.ai']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost','60.205.230.218','www.wuxita.com','wuxita.com']
 
 SITE_ID = 1
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'apps.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -42,10 +43,10 @@ INSTALLED_APPS = [
     # 项目添加的app
     'django.contrib.sites',
     'django_comments',
-    'mptt',
-    'tagging',
-    'zinnia_bootstrap',
-    'zinnia',
+    'apps.mptt',
+    'apps.tagging',
+    'apps.zinnia_bootstrap',
+    'apps.zinnia',
 
 ]
 
@@ -64,7 +65,7 @@ ROOT_URLCONF = 'zblog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': False,
         'OPTIONS': {
             'context_processors': [
@@ -108,6 +109,7 @@ DATABASES = {
         'PASSWORD': '111111',
         'HOST':'localhost',
         'PORT':'3306',
+        "TEST_CHARSET": "utf8",
     }
 }
 
@@ -136,7 +138,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 #LANGUAGE_CODE = 'en-us'
 LANGUAGE_CODE = 'zh-hans'
-
+USE_TZ=False
 #TIME_ZONE = 'UTC'
 TIME_ZONE = 'Asia/Shanghai'
 
@@ -151,5 +153,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = (
+    os.path.join(STATIC_ROOT, 'zinnia_bootstrap'),
+) 
 ZINNIA_MARKUP_LANGUAGE = 'markdown'
 ZINNIA_MARKDOWN_EXTENSIONS = ['markdown.extensions.extra', 'markdown.extensions.codehilite']
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.163.com' # 如果不是163邮箱请替换为邮箱服务商的smtp服务器地址
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'gstftest@163.com'  # add your own accounts for local test
+EMAIL_HOST_PASSWORD = 'wzq111111'
+EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
