@@ -47,6 +47,10 @@ INSTALLED_APPS = [
     'apps.tagging',
     'apps.zinnia_bootstrap',
     'apps.zinnia',
+    'apps.ckeditor',
+    'mod_wsgi.server',
+    'zinnia_ckeditor',
+    'ckeditor_uploader'
 
 ]
 
@@ -167,3 +171,28 @@ EMAIL_HOST_USER = 'gstftest@163.com'  # add your own accounts for local test
 EMAIL_HOST_PASSWORD = 'wzq111111'
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+CKEDITOR_UPLOAD_PATH = os.path.join(BASE_DIR, 'upload')
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Full',
+    },
+    'zinnia-content': {
+        'toolbar_Zinnia': [
+            ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord'],
+            ['Undo', 'Redo'],
+            ['Scayt'],
+            ['Link', 'Unlink', 'Anchor'],
+            ['Image', 'Table', 'HorizontalRule', 'SpecialChar'],
+            ['Source'],
+            ['Maximize'],
+            '/',
+            ['Bold', 'Italic', 'Underline', 'Strike',
+             'Subscript', 'Superscript', '-', 'RemoveFormat'],
+            ['NumberedList', 'BulletedList', '-',
+             'Outdent', 'Indent', '-', 'Blockquote'],
+            ['Styles', 'Format'],
+        ],
+        'toolbar': 'Zinnia',
+    },
+}

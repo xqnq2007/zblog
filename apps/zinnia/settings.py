@@ -92,3 +92,10 @@ URL_SHORTENER_BACKEND = getattr(settings, 'ZINNIA_URL_SHORTENER_BACKEND',
                                 'zinnia.url_shortener.backends.default')
 
 STOP_WORDS = stop_words(settings.LANGUAGE_CODE.split('-')[0])
+
+WYSIWYG_MARKUP_MAPPING = {
+    'textile': 'markitup',
+    'markdown': 'markitup',
+    'restructuredtext': 'markitup',
+    'html': 'ckeditor'
+}
